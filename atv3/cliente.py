@@ -9,6 +9,7 @@ servidor.salvar(mensagem)
 dados = {
   'ip': servidor.getIP(),
   'hora': servidor.getHora(),
+  'chamadas': servidor.getChamadas(),
   'mensagens': servidor.getMensagens(),
 }
 dados_json = json.dumps(dados, indent=2)
