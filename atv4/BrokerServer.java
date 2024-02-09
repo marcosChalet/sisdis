@@ -1,6 +1,7 @@
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -42,10 +43,14 @@ public class BrokerServer extends UnicastRemoteObject implements Broker {
 
   @Override
   public String getHour() throws RemoteException {
-    LocalTime currentTime = LocalTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-    String formattedTime = currentTime.format(formatter);
-    return "Hora: " + formattedTime;
+       LocalDateTime currentDateTime = LocalDateTime.now();
+        int year = currentDateTime.getYear();
+        int month = currentDateTime.getMonthValue();
+        int day = currentDateTime.getDayOfMonth();
+        int hour = currentDateTime.getHour();
+        int minute = currentDateTime.getMinute();
+        String formattedDateTime = String.format("%04d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
+    return "Hour: " + formattedDateTime;
   }
 
   public static void main(String[] args) {
